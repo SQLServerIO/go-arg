@@ -45,6 +45,14 @@ func MustParse(dest ...interface{}) *Parser {
 	return p
 }
 
+// PrintHelp allows the end user to call the print function directly
+func PrintHelp(dest ...interface{}) *Parser {
+	p, _ := NewParser(Config{}, dest...)
+	p.Parse(os.Args[1:])
+	p.WriteHelp(os.Stdout)
+	return nil
+}
+
 // Parse processes command line arguments and stores them in dest
 func Parse(dest ...interface{}) error {
 	p, err := NewParser(Config{}, dest...)
